@@ -1,0 +1,3 @@
+#日志输出格式 file/stdout,为file时需要指定log_file路径
+log_type    =   "file"
+log_file    =    "access.log"
