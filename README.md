@@ -8,6 +8,9 @@ gin学习框架
 <li>conf/db.toml 配置数据库连接</li>
 <li>conf/server.toml 配置服务运行配置</li>
 </ol>
+
 # 项目启动
-debug模式：go run main.go web
-二进制运行 go build;./kvm_backup web
+<ul>
+<li>debug模式：go run main.go web</li>
+<li>二进制运行 go build;./kvm_backup web</li>
+</ul>
