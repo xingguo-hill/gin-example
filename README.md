@@ -13,5 +13,5 @@ gin学习框架
 <ul>
 <li>debug模式：go run main.go web</li>
 <li>二进制运行 go build;./kvm_backup web</li>
-<li>登录入口：/usr/ 账号:test 密码:123456</li>
+<li>登录入口：/usr/ 账号:admin 密码:123456</li>
 </ul>
