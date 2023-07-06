@@ -12,6 +12,8 @@ import (
 )
 
 func TaskGetIndex(c *gin.Context) {
+	// u, _ := c.Get("u")
+	// fmt.Printf("sNew var =%#v\n", u)
 	id, _ := strconv.Atoi(c.Param("id"))
 	page, _ := strconv.Atoi(c.Query("page"))
 	var count int64
