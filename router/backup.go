@@ -2,15 +2,14 @@ package router
 
 import (
 	"html/template"
+	"kvm_backup/api"
 	"kvm_backup/common"
 	"kvm_backup/controller"
 	"kvm_backup/dao"
-	"kvm_backup/middleware"
 	"os"
 
 	"github.com/fvbock/endless"
 	"github.com/gin-contrib/sessions"
-	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,12 +27,10 @@ func init() {
 	if dao.S("env") == "product" {
 		gin.SetMode(gin.ReleaseMode)
 	}
-	//设置session存储模型
-	store, err := redis.NewStore(10, "tcp", dao.S("session_redis_host"), "", []byte(dao.S("session_secret")))
-	if err != nil {
-		panic("redis connect err")
+	if dao.S("auth_type") == "session" {
+		//设置session中间件
+		r.Use(sessions.Sessions(api.SID, api.GetSessionStore()))
 	}
-	r.Use(sessions.Sessions(middleware.SID, store))
 
 	//模版自定义函数
 	r.SetFuncMap(template.FuncMap{
@@ -44,7 +41,7 @@ func RouterInfo() {
 	r.LoadHTMLGlob("tpl/*")
 	r.Static("/css", "./static/css")
 	// Simple group: v1
-	v1 := r.Group("/kvm_backup/", middleware.AuthUser)
+	v1 := r.Group("/kvm_backup/", controller.AuthUser)
 	{
 		//task
 		v1.GET("/task/:id", controller.TaskGetIndex)

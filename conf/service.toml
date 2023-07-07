@@ -1,10 +1,13 @@
 #debug/product
 env         = "debug"
 #日志输出格式 file/stdout,为file时需要指定log_file路径
-log_type    = "file"
+log_type    = "stdout"
 log_file    = "access.log"
 
-#session配置
+#登录验证方式:jwt/session
+auth_type  ="jwt"
+cookie_domain     = "127.0.0.1"
+
+#session验证配置
 session_redis_host = "192.168.56.20:6379"
 session_secret     = "123456"
-session_domain     = "127.0.0.1"
